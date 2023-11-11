@@ -218,6 +218,20 @@ function convertMarkdownToHtml(filename, type, text) {
 
   // checkbox
   md.use(require('markdown-it-checkbox'));
+  
+  //mathsupport
+  md.use(require('markdown-it-mathjax3'),{
+    tex: {
+      inlineMath: [['$', '$'],
+                   ['\\(', '\\)']],
+      displayMath:[['$$', '$$'],
+                   ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+
+    }
+  })
+
 
   // emoji
   var emoji_f = setBooleanValue(matterParts.data.emoji, vscode.workspace.getConfiguration('markdown-pdf')['emoji']);
